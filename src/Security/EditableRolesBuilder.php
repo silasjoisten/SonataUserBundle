@@ -48,17 +48,17 @@ class EditableRolesBuilder
     /**
      * @var array
      */
-    protected $labelPermission;
+    private $labelPermission;
 
     /**
      * @var array
      */
-    protected $labelAdmin;
+    private $labelAdmin;
 
     /**
      * @var array
      */
-    protected $exclude;
+    private $exclude;
 
     /**
      * @param TokenStorageInterface         $tokenStorage

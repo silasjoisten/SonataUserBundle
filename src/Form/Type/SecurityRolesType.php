@@ -101,7 +101,7 @@ class SecurityRolesType extends AbstractType
                 }
                 $roles = $this->rolesBuilder->getRoles($options['choice_translation_domain'], $options['expanded']);
 
-                return array_flip($roles);
+                return $roles;
             },
 
             'read_only_choices' => function (Options $options) {

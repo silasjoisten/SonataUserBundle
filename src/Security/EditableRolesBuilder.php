@@ -110,28 +110,15 @@ class EditableRolesBuilder
         );
 
         $roles['other'] = [
-            'ROLE_ADMIN' => 'Role Admin',
-            'ROLE_SUPER_ADMIN' => 'Role Super Admin',
-            'ROLE_SONATA_ADMIN' => 'Role Sonata Admin',
+            'ROLE_ADMIN' => 'ROLE_ADMIN',
+            'ROLE_SUPER_ADMIN' => 'ROLE_SUPER_ADMIN',
+            'ROLE_SONATA_ADMIN' => 'ROLE_SONATA_ADMIN',
         ];
 
         // get roles from the service container
         foreach ($this->rolesHierarchy as $name => $rolesHierarchy) {
             if ($this->authorizationChecker->isGranted($name) || $isMaster) {
-              // $roles[$name] = $this->translateRole($name, $domain);
-//                if ($expanded) {
-//                    $result = array_map([$this, 'translateRole'], $rolesHierarchy, array_fill(0, count($rolesHierarchy), $domain));
-//                    $roles[$name] .= ': '.implode(', ', $result);
-//                }
-
-                foreach ($rolesHierarchy as $role) {
-                    if (false === array_key_exists($role, $this->rolesHierarchy)
-                        && !isset($roles['other'][$role])
-                        && false === $this->recursiveArraySearch($name, $roles)
-                    ) {
-                        $roles['other'][$name] = $this->translateRole($name, $domain);
-                    }
-                }
+                $roles['other'][$name] = $this->translateRole($name, $domain);
             }
         }
 

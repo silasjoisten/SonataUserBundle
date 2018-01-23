@@ -2,6 +2,15 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the Sonata Project package.
+ *
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Sonata\UserBundle\Twig;
 
 /**
@@ -16,9 +25,9 @@ final class SecurityExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        return array(
+        return [
             new \Twig_SimpleFunction('roleInTable', [$this, 'roleInTable']),
-        );
+        ];
     }
 
     /**
@@ -31,7 +40,7 @@ final class SecurityExtension extends \Twig_Extension
 
     /**
      * @param string $role
-     * @param array $roles
+     * @param array  $roles
      *
      * @return bool
      */

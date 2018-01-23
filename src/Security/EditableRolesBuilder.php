@@ -132,7 +132,7 @@ class EditableRolesBuilder
         }
 
         if (empty($this->labelPermission)) {
-            throw new \InvalidArgumentException('You must add this line in the configuration of Sonata Admin: ' .
+            throw new \InvalidArgumentException('You must add this line in the configuration of Sonata Admin: '.
                 "[security:\n\thandler: sonata.admin.security.handler.role]");
         }
 
@@ -162,6 +162,38 @@ class EditableRolesBuilder
         });
 
         return $rolesReadOnly;
+    }
+
+    /**
+     * @return array
+     */
+    final public function getExclude()
+    {
+        return $this->exclude;
+    }
+
+    /**
+     * @param string $exclude
+     */
+    final public function addExclude($exclude): void
+    {
+        $this->exclude[] = $exclude;
+    }
+
+    /**
+     * @return array
+     */
+    final public function getLabelPermission()
+    {
+        return $this->labelPermission;
+    }
+
+    /**
+     * @return array
+     */
+    final public function getLabelAdmin()
+    {
+        return $this->labelAdmin;
     }
 
     private function iterateAdminRoles(callable $func): void
@@ -219,40 +251,8 @@ class EditableRolesBuilder
     }
 
     /**
-     * @return array
-     */
-    final public function getExclude()
-    {
-        return $this->exclude;
-    }
-
-    /**
-     * @param string $exclude
-     */
-    final public function addExclude($exclude): void
-    {
-        $this->exclude[] = $exclude;
-    }
-
-    /**
-     * @return array
-     */
-    final public function getLabelPermission()
-    {
-        return $this->labelPermission;
-    }
-
-    /**
-     * @return array
-     */
-    final public function getLabelAdmin()
-    {
-        return $this->labelAdmin;
-    }
-
-    /**
      * @param string $role
-     * @param array $roles
+     * @param array  $roles
      *
      * @return bool
      */
@@ -263,6 +263,7 @@ class EditableRolesBuilder
                 return true;
             }
         }
+
         return false;
     }
 }

@@ -119,6 +119,15 @@ class EditableRolesBuilder
         foreach ($this->rolesHierarchy as $name => $rolesHierarchy) {
             if ($this->authorizationChecker->isGranted($name) || $isMaster) {
                 $roles['other'][$name] = $this->translateRole($name, $domain);
+
+                foreach ($rolesHierarchy as $role) {
+                    if (false === array_key_exists($role, $rolesHierarchy)
+                        && !isset($roles['other'][$role])
+                        && false === $this->recursiveArraySearch($role, $roles)
+                    ) {
+                        $roles['other'][$role] = $this->translateRole($role, $domain);
+                    }
+                }
             }
         }
 

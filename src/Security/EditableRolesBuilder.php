@@ -121,7 +121,7 @@ class EditableRolesBuilder
                 $roles['other'][$name] = $this->translateRole($name, $domain);
 
                 foreach ($rolesHierarchy as $role) {
-                    if (false === array_key_exists($role, $rolesHierarchy)
+                    if (false === array_key_exists($role, $this->rolesHierarchy)
                         && !isset($roles['other'][$role])
                         && false === $this->recursiveArraySearch($role, $roles)
                     ) {
